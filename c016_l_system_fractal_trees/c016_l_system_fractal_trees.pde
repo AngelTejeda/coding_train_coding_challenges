@@ -1,5 +1,11 @@
 String axiom;
 
+
+// Parameters
+int treeSize = 5; // Max recommended value: 5
+float branchLength = 5;
+float maxBranchWidth = 1;
+float minBranchWidth = 0.3;
 boolean showProcess = false;
 boolean smooth = true;
 
@@ -8,13 +14,13 @@ HashMap<Character, String> rules;
 Turtle turtle;
 
 void setup() {
-  size(700, 600);
+  size(900, 600);
   
   rules = new HashMap<Character, String>();
   rules.put('F', "FF+[+F-F-F]-[-F+F+F]");
   
   PVector initialPos = new PVector(width / 2, height);
-  turtle = new Turtle(initialPos, generateInstructions(5));
+  turtle = new Turtle(initialPos, generateInstructions(treeSize));
   
   if (!showProcess) {
     while(turtle.isActive) {

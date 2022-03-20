@@ -1,4 +1,5 @@
 Tree tree;
+int maxOrder;
 
 static final float maxDistance = 100;
 static final float minDistance = 10;
@@ -6,6 +7,7 @@ static final float minDistance = 10;
 void setup() {
   size(400, 400);
   
+  maxOrder = 0;
   generateTree();
 }
 

@@ -3,6 +3,7 @@ class Branch {
   private PVector pos;
   private PVector originalDir;
   private int timesPulled;
+  private int order;
     
   public PVector dir;
   public ArrayList<Branch> children;
@@ -12,13 +13,17 @@ class Branch {
   color branchColor = color(105, 53, 23);
 
   // Constructor
-  public Branch(PVector pos, PVector dir) {
+  public Branch(PVector pos, PVector dir, int order) {
+    this.order = order;
     this.pos = pos;
     this.dir = dir.copy();
     originalDir = dir.copy();
     
     timesPulled = 0;    
     children = new ArrayList();
+    
+    if (order > maxOrder)
+      maxOrder = order;
   }
   
   // Getters and Setters
@@ -36,8 +41,11 @@ class Branch {
   
   // Methods
   public void show() {
+    //float weight = 6 / (order + 2) +1;
+    float weight = map(order, 0, maxOrder + 1, 5, 0.5);
+    
     stroke(branchColor);
-    strokeWeight(3);
+    strokeWeight(weight);    
     
     if (children == null)
       return;
@@ -58,7 +66,7 @@ class Branch {
     PVector newDir = PVector.mult(dir, len);
     PVector newPos = PVector.add(pos, newDir);
 
-    Branch newBranch = new Branch(newPos, this.dir.copy());
+    Branch newBranch = new Branch(newPos, this.dir.copy(), order + 1);
     children.add(newBranch);
     
     return newBranch;

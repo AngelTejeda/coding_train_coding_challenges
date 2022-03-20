@@ -9,7 +9,7 @@ class Tree {
   
   // Constructor
   public Tree(float rootX, float rootY) {
-    root = new Branch(new PVector(rootX, rootY), new PVector(0, -1));
+    root = new Branch(new PVector(rootX, rootY), new PVector(0, -1), 0);
     leaves = new ArrayList();
     isGrowing = true;
   }

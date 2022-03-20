@@ -3,12 +3,11 @@ import java.util.Arrays;
 
 class Turtle {
   Stack<Triplet<PVector, PVector, Float>> checkpoints;  // currentPos, lastPos, angle
-  ArrayList<Triplet<PVector, PVector, Integer>> points; // An array of points where the turtle has been.
+  ArrayList<Triplet<PVector, PVector, Integer>> points; // An array of points where the turtle has been. start, end, strokeWeight
   PVector currentPos;  // Position of the turtle
   PVector lastPoint;   // Last point were the turtle was
   PVector nextPoint;   // Next point were the turtle should be
   
-  static final float distance = 5;  // Distance the turtle travles each time it moves forward
   static final float speed = 5;     // Speed of the turtle when drawing
   PVector dir;  // Represents the direction the turtle is moving
   float angle;  // Angle of the turtle
@@ -55,15 +54,19 @@ class Turtle {
   }
   
   private void showPath() {
-    stroke(255, 100);
-    strokeWeight(1);
+    stroke(255);
     
     // Previous points
+    int i = 0;
     for (Triplet<PVector, PVector, Integer> point : points) {
       PVector last = point.value1;
       PVector next = point.value2;
       
+      float weight = map(i, 0, points.size(), maxBranchWidth, minBranchWidth);
+      strokeWeight(weight);
       line(last.x, last.y, next.x, next.y);
+      
+      i++;
     }
     
     // From lastpoint to current point
@@ -93,8 +96,8 @@ class Turtle {
   public void move() {
     // If the turtle is on its not moving, this section calculates its next point
     if (!isMoving()) {
-      float nextX = currentPos.x + distance * sin(angle);
-      float nextY = currentPos.y - distance * cos(angle);
+      float nextX = currentPos.x + branchLength * sin(angle);
+      float nextY = currentPos.y - branchLength * cos(angle);
       
       nextPoint = new PVector(nextX, nextY);
       
