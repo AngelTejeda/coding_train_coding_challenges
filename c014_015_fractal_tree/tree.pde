@@ -40,7 +40,7 @@ class Tree {
     if (!isLeaf())
       return;
     
-    if (random(5000) < 5)
+    if (random(500) < 5)
       dropLeaf();
   }
   
@@ -93,7 +93,7 @@ class Tree {
     if (level > maxLevel)
       return;
     
-    int numBranches = floor(random(level + 2) + 2);
+    int numBranches = floor(random(level + 1) + 2);
     
     for (int i=0 ; i<numBranches ; i++) {
       PVector r = end;
