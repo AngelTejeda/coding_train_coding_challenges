@@ -7,8 +7,8 @@ class Leaf {
   color leafColor = color(11, 133, 43);
   
   // Constructor
-  public Leaf(float x, float y) {
-    pos = new PVector(x, y);
+  public Leaf(float x, float y, float z) {
+    pos = new PVector(x, y, z);
     reached = false;
   }
   
@@ -30,6 +30,6 @@ class Leaf {
     stroke(leafColor);
     strokeWeight(3);
     
-    point(pos.x, pos.y);
+    point(pos.x, pos.y, pos.z);
   }
 }

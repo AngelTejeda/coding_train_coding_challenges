@@ -1,14 +1,19 @@
+import peasy.*;
+
 Tree tree;
 int maxOrder;
+PeasyCam cam;
 
 static final float maxDistance = 100;
 static final float minDistance = 10;
 
 void setup() {
-  size(400, 400);
+  size(400, 400, P3D);
   
   maxOrder = 0;
   generateTree();
+  
+  cam = new PeasyCam(this, width / 2, height / 2, 0, 400);
 }
 
 void draw() {
@@ -29,7 +34,7 @@ void generateTree() {
   tree.generateTrunk();
 }
 
-void mousePressed() {
-  if (mouseButton == LEFT)
+void keyPressed() {
+  if (key == ' ')
     generateTree();
 }

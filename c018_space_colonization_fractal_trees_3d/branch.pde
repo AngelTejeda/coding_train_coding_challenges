@@ -51,7 +51,7 @@ class Branch {
       return;
       
     for (Branch child : children) {
-      line(pos.x, pos.y, child.pos.x, child.pos.y);
+      line(pos.x, pos.y, pos.z, child.pos.x, child.pos.y, child.pos.z);
       
       child.show();
     }

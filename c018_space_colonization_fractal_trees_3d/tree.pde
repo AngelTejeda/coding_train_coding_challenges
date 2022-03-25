@@ -9,7 +9,7 @@ class Tree {
   
   // Constructor
   public Tree(float rootX, float rootY) {
-    root = new Branch(new PVector(rootX, rootY), new PVector(0, -1), 0);
+    root = new Branch(new PVector(rootX, rootY), new PVector(0, -1, 0), 0);
     leaves = new ArrayList();
     isGrowing = true;
   }
@@ -31,19 +31,22 @@ class Tree {
   public void generateLeaves() {
     float centerX = width / 2;
     float centerY = height / 5 * 2;
+    float centerZ = 0;
     
     for (int j=0 ; j<600 ; j++) {
-      float r = random(width / 3);
-      float a = random(TWO_PI);
-      float x = centerX + r * sin(a);
-      float y = centerY - r * cos(a);
+      float rho = random(width / 3);
+      float theta = random(TWO_PI);
+      float phi = random(TWO_PI);
+      float x = centerX + rho * sin(phi) * cos(theta);
+      float y = centerY + rho * sin(phi) * sin(theta);
+      float z = centerZ + rho * cos(phi);
       
-      leaves.add(new Leaf(x, y));
+      leaves.add(new Leaf(x, y, z));
     }
   }
   
   public void removeLeaves() {
-    leaves = new ArrayList();
+    leaves.clear();
   }
   
   public void generateTrunk() {
